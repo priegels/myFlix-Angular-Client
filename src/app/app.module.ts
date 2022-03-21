@@ -28,6 +28,7 @@ import { EditProfileFormComponent } from './edit-profile-form/edit-profile-form.
 import { NavigationComponent } from './navigation/navigation.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { DeleteProfileFormComponent } from './delete-profile-form/delete-profile-form.component';
 
 // adding modules to imports array of main module
 
@@ -35,6 +36,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent},
   { path: 'movies', component: MovieCardComponent},
+  { path: 'profile', component: UserProfileComponent},
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     GenreCardComponent,
     SynopsisCardComponent,
     EditProfileFormComponent,
-    NavigationComponent
+    NavigationComponent,
+    DeleteProfileFormComponent
   ],
   imports: [
     BrowserModule,
