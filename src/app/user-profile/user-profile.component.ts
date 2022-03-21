@@ -29,7 +29,6 @@ export class UserProfileComponent implements OnInit {
     this.getUser();
   }
 
-
   // function to let the user display their profile
   getUser(): void {
     const user = localStorage.getItem('user');
@@ -38,7 +37,7 @@ export class UserProfileComponent implements OnInit {
         this.user = resp;
         this.getFavMovie();
 
-        console.log(resp);
+        console.log(this.user);
       });
     }
   }
@@ -57,8 +56,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   // function to let the user remove a movie from their favorited movies
-  removeFavMovie(id: string, Title: string): void {
-    this.fetchApiData.deleteFavMovie(id).subscribe((resp) => {
+  removeFavMovie(MovieID: string, Title: string): void {
+    this.fetchApiData.deleteFavMovie(MovieID).subscribe((resp) => {
       console.log(resp);
       this.snackBar.open(
         `${Title} is no longer favorited`,
