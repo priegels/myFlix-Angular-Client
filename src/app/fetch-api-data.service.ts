@@ -126,8 +126,9 @@ export class FetchApiDataService {
 
 // Delete FavMovie
 
-  public deleteFavMovie(Username: any, MovieID: any): Observable<any> {
+  public deleteFavMovie(MovieID: any): Observable<any> {
     const token = localStorage.getItem('token');
+    const Username = localStorage.getItem('user');
     return this.http.delete(apiUrl + `/users/${Username}/movies/${MovieID}`, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer' + token,
