@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       this.movies.forEach((movie: any) => {
-        if (this.user.FavMovie.includes(movie._id)) {
+        if (this.user.FavoriteMovies.includes(movie._id)) {
           this.FavMovie.push(movie);
         }
       });
@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
 
   // function to let the user remove a movie from their favorited movies
   removeFavMovie(MovieID: string, Title: string): void {
-    this.fetchApiData.deleteFavMovie(MovieID).subscribe((resp) => {
+    this.fetchApiData.deleteFavMovie(this.user.Username, MovieID).subscribe((resp) => {
       console.log(resp);
       this.snackBar.open(
         `${Title} is no longer favorited`,
