@@ -1,0 +1,46 @@
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid;
+    border-width: 3px;
+    border-color: black;
+    padding: 45px;
+}
+
+.mat-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.mat-card-title {
+    line-height: 22px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-card-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.register-button {
+    border: solid;
+    border-width: 1.5px;
+    border-color: black;
+    background-color: #CE2A38;
+    color: white;
+}
+
+.close-button {
+    border: solid;
+    border-width: 1.5px;
+    border-color: black;
+    background-color: gray;
+    color: white;
+}

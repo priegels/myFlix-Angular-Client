@@ -14,8 +14,7 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
 })
 
 export class MovieCardComponent implements OnInit {
-  user: any = {};
-  Username = localStorage.getItem('user');
+  user: any = localStorage.getItem('user');
   movies: any[] = [];
   FavMovie: any[] = [];
 
@@ -44,7 +43,7 @@ export class MovieCardComponent implements OnInit {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((resp: any) => {
       this.FavMovie = resp.FavoriteMovies;
-      console.log(this.FavMovie);
+      return this.FavMovie;
     });
   }
 
@@ -71,19 +70,30 @@ export class MovieCardComponent implements OnInit {
   }
 
   // function to display to user filled or empty heart icon depending on favorite status of a movie
+  /*setFavStatus(MovieID: any): any {
+    if (this.FavMovie.includes(MovieID)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  */
+  
   isFav(MovieID: string): boolean {
     return this.FavMovie.some((movie) => movie._id === MovieID);
   }
 
   setFavStatus(movie: any): void {
     this.isFav(movie._id)
-    ? this.deleteFavMovie(movie._id, movie.Title)
-    : this.addFavMovie(movie._id, movie.Title)
+      ? this.deleteFavMovie(movie._id, movie.Title)
+      : this.addFavMovie(movie._id, movie.Title);
   }
+
 
   // open Genre dialog
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
+      panelClass: 'custom-dialog-container',
       data: { name, description },
       width: '500px'
     });
@@ -92,6 +102,7 @@ export class MovieCardComponent implements OnInit {
   // open Director dialog
   openDirectorDialog(name: string, bio: string): void {
     this.dialog.open(DirectorCardComponent, {
+      panelClass: 'custom-dialog-container',
       data: {name, bio},
       width: '500px',
     });
@@ -100,6 +111,7 @@ export class MovieCardComponent implements OnInit {
   // open Synopsis dialog
   openSynopsisDialog(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
+      panelClass: 'custom-dialog-container',
       data: { title, description}
     })
   }

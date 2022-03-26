@@ -104,7 +104,7 @@ public getUser(Username: any): Observable<any> {
     //no GET request for this endpoint previously made in API; was used for PUSH request
     return this.http.get(apiUrl + `/users/:Username/movies/${MovieID}`, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -113,8 +113,10 @@ public getUser(Username: any): Observable<any> {
 
 // Add movie to favMovies
 
-  public addFavMovie(Username: any, MovieID: string): Observable<any> {
+  public addFavMovie(Title: string, MovieID: string): Observable<any> {
     const token = localStorage.getItem('token');
+    const Username = localStorage.getItem('user');
+    console.log(apiUrl + `/users/${Username}/movies/${MovieID}`);
     return this.http.post(apiUrl + `/users/${Username}/movies/${MovieID}`, {}, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
@@ -126,8 +128,9 @@ public getUser(Username: any): Observable<any> {
 
 // Delete FavMovie
 
-  public deleteFavMovie(Username: any, MovieID: string): Observable<any> {
+  public deleteFavMovie(Title: string, MovieID: string): Observable<any> {
     const token = localStorage.getItem('token');
+    const Username = localStorage.getItem('user');
     return this.http.delete(apiUrl + `/users/${Username}/movies/${MovieID}`, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
@@ -139,9 +142,10 @@ public getUser(Username: any): Observable<any> {
 
 // Edit User Profile
 
-  public editUserProfile(Username: any): Observable<any> {
+  public editUserProfile(userData: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + `/users/${Username}`, {headers: new HttpHeaders(
+    const Username = localStorage.getItem('user');
+    return this.http.put(apiUrl + `/users/${Username}`, userData, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
@@ -164,8 +168,9 @@ public getUser(Username: any): Observable<any> {
   }
 
 // non-typed response extraction at bottom to reduce repetition
-private extractResponseData(data: any | Object): any {
-  return data || {};
+private extractResponseData(resp: any | Object): any {
+  const body = resp;
+  return body || {};
   }
 
 // Error function at bottom to reduce repetition 

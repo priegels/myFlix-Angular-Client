@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Sign Up!</mat-card-title>
+    <mat-card-title>가입하기! <br> Sign Up!</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form>
@@ -46,9 +46,15 @@
     <button
       mat-raised-button
       (click)="registerUser()"
-      color="primary"
+      class="register-button"
     >
       Sign Up
+    </button>
+    <button
+    mat-raised-button
+    (click)="closeDialog()"
+    class="close-button"
+    >Close
     </button>
   </mat-card-actions>
 </mat-card>

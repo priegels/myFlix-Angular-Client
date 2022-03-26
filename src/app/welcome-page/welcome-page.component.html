@@ -1,12 +1,15 @@
 <div class="main-page">
+  <img src="../../assets/logo.png">
     <h1>
+      안녕하세요! <br>
       Welcome to K-Flix!
     </h1>
+    <div class="div-buttons">
     <button
       mat-raised-button
       (click)="openUserRegistrationDialog()"
       style="margin-right: 10px;"
-      color="primary"
+      class="register-button"
     >
       Sign Up
     </button>
@@ -14,16 +17,10 @@
       mat-raised-button
       (click)="openUserLoginDialog()"
       style="margin-left: 10px margin-right 10px;"
-      color="primary"
+      class="login-button"
     > 
       Login
     </button>
-   <!-- <button
-      mat-raised-button
-      (click)="openMoviesDialog()"
-      color="secondary"
-      style="margin-left: 10px;"
-    >
-      All movies
-    </button> -->
+  </div>
+
   </div>

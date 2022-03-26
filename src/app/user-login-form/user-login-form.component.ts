@@ -51,5 +51,9 @@ export class UserLoginFormComponent implements OnInit {
       });
     });
   }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
 

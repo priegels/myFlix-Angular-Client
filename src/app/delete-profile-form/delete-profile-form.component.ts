@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FetchApiDataService } from '../fetch-api-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-profile-form',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteProfileFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<DeleteProfileFormComponent>,
+    public router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  deleteUserProfile(): void {
+    const user = localStorage.getItem('user');
+    this.fetchApiData.deleteUserProfile(user).subscribe((resp: any) => {
+      this.dialogRef.close();
+      this.snackBar.open(`Your profile has been deleted.`, 'OK', {
+        duration: 2000
+      });
+    });
+    localStorage.clear();
+    this.router.navigate(['/welcome']);
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

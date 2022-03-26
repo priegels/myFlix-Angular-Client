@@ -1,0 +1,64 @@
+.main-page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    width: 400px;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+    line-height: 35px;
+    margin-bottom: 25px;
+}
+
+.div-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.register-button {
+    background-color: #CE2A38;
+    color: white;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.register-button:hover {
+    background-color: #e5505c;
+}
+
+.register-button:focus {
+    background-color: #b81826;
+}
+
+.login-button {
+    background-color: #0045A1;
+    color: white;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: #3170c6;
+}
+
+.login-button:focus {
+    background-color: #013273;
+}
+
+
+

@@ -1,40 +1,84 @@
 <app-navigation></app-navigation>
 <div class="user-profile">
-    <mat-card>
-        <mat-card-title>Profile Information</mat-card-title>
+    <mat-card class="user-profile-card">
+        <mat-card-header>
+            <mat-card-title>Profile Information</mat-card-title>
+        </mat-card-header>
+            <div class="divider"></div>
         <mat-card-content class="user-profile-info">
             <p><b>Username:</b> {{user.Username}}</p>
             <p><b>Email:</b> {{user.Email}}</p>
-            <p><b>Birthday:</b> {{user.Birthday}}</p>
+            <p><b>Birthday:</b> {{user.Birthday | date }}</p>
         </mat-card-content>
         <mat-card-actions class="usercard-actions">
             <button
                 mat-raised-button
                 (click)="openUserEditDialog()"
-                style="margin-right: 10px;"
-                color="primary"
+                class="edit-profile-button"
             >
+                <mat-icon>edit</mat-icon>
                 Edit profile
             </button>
             <button
                 mat-raised-button
                 (click)="openUserDeleteDialog()"
-                color="primary"
+                class="delete-profile-button"
             > 
-                Delete Account
+                <mat-icon>delete_forever</mat-icon>
+                Delete Profile
             </button>
         </mat-card-actions>
     </mat-card>
-    <div class="favorite-movies-container">
-        <div class="mat-card-favorite-movies">Favorite Movies</div>
-        <mat-card *ngFor="let movie of FavMovie;" class="favorite-movies">
-            <mat-card-actions>
-                <mat-icon (click)="removeFavMovie(movie._id, movie.Title)">delete_outline</mat-icon>
-            </mat-card-actions>
-            <mat-card-header>
-                <mat-card-title class="favorite-movies-title">{{movie.Title}}</mat-card-title>
-            </mat-card-header>
-            <img class="favorite-movies-image" src={{movie.ImagePath}} alt={{movie.Title}} />
-        </mat-card>
+
+    <div class="favorite-movies-header">
+        <h2 class="mat-card-favorite-movies">Favorite Movies</h2>
     </div>
+    <div class="favorite-movies-container">
+        <mat-card *ngFor="let movie of FavMovie;" class="favorite-movies">
+            <mat-card-header class="favorite-movies-title-header">
+                <mat-card-title class="favorite-movies-title">{{movie.Title}} ({{movie.ReleaseDate}})</mat-card-title>
+                  <mat-card-subtitle class="director">Directed by: 
+                    <button 
+                      class="director-button"
+                      mat-button
+                      color="grey"
+                      (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio)"
+                    > {{movie.Director.Name}}
+                    </button>
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <img src={{movie.ImagePath}} alt= {{movie.Title}} />
+                <mat-card-actions>
+                  <button
+                    class="genre-button"
+                    mat-raised-button
+                    color="primary"
+                    (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
+                  >
+                    {{movie.Genre.Name}}
+                  </button>
+            
+                  <button
+                    class="synopsis-button"
+                    mat-raised-button
+                    color="primary"
+                    (click)="openSynopsisDialog(movie.Title, movie.Description)"
+                  >
+                    Synopsis
+                  </button>
+            
+                  <mat-card-actions>
+                      <button 
+                        mat-icon-button 
+                        (click)="removeFavMovie(movie._id, movie.Title)"
+                        >
+                        <mat-icon>delete_outline</mat-icon>
+                      </button>
+                </mat-card-actions>
+                                </mat-card-actions>
+              </mat-card>
+                </div>
 </div>
+
+
+

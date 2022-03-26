@@ -17,6 +17,7 @@ export class WelcomePageComponent implements OnInit {
   // function that will open dialog when signup button is clicked
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
+      panelClass: 'custom-dialog-container',
       // assigning dialog a width
       width: '280px'
     });
@@ -25,17 +26,12 @@ export class WelcomePageComponent implements OnInit {
   //function that will open dialog when login button is clicked
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
+      panelClass: 'custom-dialog-container',
       //assigning width to dialog
       width: '280px'
     });
   }
 }
 
- /*
-  //function that will open the movie view
-  openMoviesDialog(): void {
-   this.dialog.open(MovieCardComponent, {
-     width: '500px'
-    });
-  } */
+
 

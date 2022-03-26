@@ -40,4 +40,8 @@ export class UserRegistrationFormComponent implements OnInit {
     });
   }
   
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
 }
