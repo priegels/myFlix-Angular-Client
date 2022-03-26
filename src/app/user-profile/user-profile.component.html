@@ -36,8 +36,10 @@
     <div class="favorite-movies-container">
         <mat-card *ngFor="let movie of FavMovie;" class="favorite-movies">
             <mat-card-header class="favorite-movies-title-header">
-                <mat-card-title class="favorite-movies-title">{{movie.Title}} ({{movie.ReleaseDate}})</mat-card-title>
-                  <mat-card-subtitle class="director">Directed by: 
+                <mat-card-title class="favorite-movies-title">
+                  {{movie.Title}} ({{movie.ReleaseDate}})
+                </mat-card-title>
+                <mat-card-subtitle class="director">Directed by: 
                     <button 
                       class="director-button"
                       mat-button
@@ -45,8 +47,8 @@
                       (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio)"
                     > {{movie.Director.Name}}
                     </button>
-                  </mat-card-subtitle>
-                </mat-card-header>
+                </mat-card-subtitle>
+            </mat-card-header>
                 <img src={{movie.ImagePath}} alt= {{movie.Title}} />
                 <mat-card-actions>
                   <button
@@ -67,17 +69,17 @@
                     Synopsis
                   </button>
             
-                  <mat-card-actions>
+                    <mat-card-actions>
                       <button 
                         mat-icon-button 
                         (click)="removeFavMovie(movie._id, movie.Title)"
-                        >
+                      >
                         <mat-icon>delete_outline</mat-icon>
                       </button>
+                    </mat-card-actions>
                 </mat-card-actions>
-                                </mat-card-actions>
-              </mat-card>
-                </div>
+        </mat-card>
+    </div>
 </div>
 
 
