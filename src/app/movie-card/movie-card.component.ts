@@ -69,18 +69,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // function to display to user filled or empty heart icon depending on favorite status of a movie
-  /*setFavStatus(MovieID: any): any {
-    if (this.FavMovie.includes(MovieID)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  */
-  
   isFav(MovieID: string): boolean {
-    return this.FavMovie.some((movie) => movie._id === MovieID);
+    console.log(MovieID);
+    console.log('Favmovie list', this.FavMovie);
+    return this.FavMovie.some((id) => id === MovieID);
   }
 
   setFavStatus(movie: any): void {
