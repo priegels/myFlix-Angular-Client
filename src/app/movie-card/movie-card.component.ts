@@ -30,7 +30,11 @@ export class MovieCardComponent implements OnInit {
     this.showFavMovie();
   }
 
-  // show all movies
+  /**
+   * function to show all movies
+   * @function getAllMovies
+   * @returns movies in JSON format
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -38,7 +42,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // function to pull all favorited movies of a user.
+  /**
+   * function to pull all favorited movies of a user.
+   */
   showFavMovie(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((resp: any) => {
@@ -47,7 +53,13 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // function to let user add a movie to their favorite movies
+  /**
+   * function to let user add a movie to their favorite movies
+   * @function addFavMovie
+   * @param MovieID 
+   * @param Title 
+   * @returns movie object array in JSON format
+   */
   addFavMovie(MovieID: string, Title: string): void {
     this.fetchApiData.addFavMovie(this.user.Username, MovieID).subscribe((resp: any) => {
       console.log(resp);
@@ -58,7 +70,13 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // function to let user remove a movie from their favorite movies
+  /**
+   * function to let user remove a movie from their favorite movies
+   * @function deleteFavMovie
+   * @param MovieID 
+   * @param Title 
+   * @returns updated users' fav movies in JSON format
+   */
   deleteFavMovie(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavMovie(this.user.Username, MovieID).subscribe((resp: any) => {
       console.log(resp);
@@ -69,12 +87,24 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * function to check if a movie is favorited
+   * @param MovieID 
+   * @returns boolean true or false
+   */
   isFav(MovieID: string): boolean {
     console.log(MovieID);
     console.log('Favmovie list', this.FavMovie);
     return this.FavMovie.some((id) => id === MovieID);
   }
 
+  /**
+   * function to toggle favorited status
+   * @function addFavMovie or 
+   * @function deleteFavMovie
+   * depending on fav status
+   * @param movie 
+   */
   setFavStatus(movie: any): void {
     this.isFav(movie._id)
       ? this.deleteFavMovie(movie._id, movie.Title)
@@ -82,7 +112,11 @@ export class MovieCardComponent implements OnInit {
   }
 
 
-  // open Genre dialog
+  /**
+   * open Genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       panelClass: 'custom-dialog-container',
@@ -91,7 +125,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // open Director dialog
+  /**
+   * open Director dialog
+   * @param name 
+   * @param bio 
+   */
   openDirectorDialog(name: string, bio: string): void {
     this.dialog.open(DirectorCardComponent, {
       panelClass: 'custom-dialog-container',
@@ -100,7 +138,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // open Synopsis dialog
+  /**
+   * open Synopsis dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsisDialog(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       panelClass: 'custom-dialog-container',

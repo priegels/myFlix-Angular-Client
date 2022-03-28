@@ -30,6 +30,10 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * function to log out a user and clear localStorage
+   * additional reroute to welcome page
+   */
   userLogout(): void {
     localStorage.clear();
     this.snackBar.open('You have successfully logged out.', 'OK', {

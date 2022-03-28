@@ -21,6 +21,11 @@ export class DeleteProfileFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * function to delete a user
+   * @function deleteUserProfile
+   * @returns delete status and reroutes to welcome page 
+   */
   deleteUserProfile(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.deleteUserProfile(user).subscribe((resp: any) => {

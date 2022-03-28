@@ -33,7 +33,12 @@ export class UserProfileComponent implements OnInit {
     this.getFavMovie();
   }
 
-  // function to let the user display their profile
+  /**
+   * calls API endpoint to get user info
+   * @function getUser
+   * @param Username
+   * @return user data in JSON format
+   */
   getUser(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -44,17 +49,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // function to let the user display their favorited movies 
-  /*getFavMovie(): void {
-    const user = localStorage.getItem('user');
-    this.fetchApiData.getUser(user).subscribe((resp: any) => {
-      this.FavMovie = resp.FavoriteMovies;
-      console.log(this.FavMovie);
-      return this.FavMovie;
-    });
-  }
-*/
-  
+/**
+ * function to let the user display their favorited movies 
+ * @function getAllMovies
+ */  
   getFavMovie(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -68,7 +66,13 @@ export class UserProfileComponent implements OnInit {
   }
   
 
-  // function to let the user remove a movie from their favorited movies
+  /**
+   * function to let the user remove a movie from their favorited movies
+   * @function deleteFavMovie
+   * @param MovieID 
+   * @param Title 
+   * @returns updated user data in JSON format
+   */
   removeFavMovie(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavMovie(this.user.Username, MovieID).subscribe((resp) => {
       console.log(resp);
@@ -85,7 +89,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // dialog to edit user information
+  /**
+   * dialog to edit user information
+   */
   openUserEditDialog(): void {
     this.dialog.open(EditProfileFormComponent, {
       panelClass: 'custom-dialog-container',
@@ -93,7 +99,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // dialog to delete user
+  /**
+   * dialog to delete user
+   */
   openUserDeleteDialog(): void {
     this.dialog.open(DeleteProfileFormComponent, {
       panelClass: 'custom-dialog-container',
@@ -101,7 +109,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // open Genre dialog
+  /**
+   * open Genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       panelClass: 'custom-dialog-container',
@@ -110,7 +122,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
   
-  // open Director dialog
+  /**
+   * open Director dialog
+   * @param name 
+   * @param bio 
+   */
   openDirectorDialog(name: string, bio: string): void {
     this.dialog.open(DirectorCardComponent, {
       panelClass: 'custom-dialog-container',
@@ -119,7 +135,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
   
-  // open Synopsis dialog
+  /**
+   * open Synopsis dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsisDialog(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       panelClass: 'custom-dialog-container',
